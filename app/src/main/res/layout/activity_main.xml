@@ -7,27 +7,110 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/Layout"
+    android:layout_below="@+id/button"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"><![CDATA[
     tools:context=".Main">
 
-    <TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="" />
+    ]]>
 
-    <Button
-        android:id="@+id/button"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextn1"
+        android:hint="Enter First Number"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextn2"
+        android:hint="Enter Second Number"
+        android:layout_alignTop="@+id/editTextn1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/editTextn1"
+        android:layout_toEndOf="@+id/editTextn1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/editTextn2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Them!"
+        android:id="@+id/rbAdd"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subtract!"
+        android:id="@+id/rbSub"
+        android:layout_below="@+id/rbAdd"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Multiply Themmmm"
+        android:id="@+id/rbMult"
+        android:layout_below="@+id/rbSub"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DIV IT"
+        android:id="@+id/rbDiv"
+        android:layout_below="@+id/rbMult"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change order of numbers if neccesary?"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/rbDiv"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="44dp"
-        android:text="ClickMe" />
-    <EditText
-    android:id="@+id/enterName"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:hint="enter your name"
-    android:inputType="textEmailAddress" />
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_below="@+id/checkBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
+
+
 </RelativeLayout>

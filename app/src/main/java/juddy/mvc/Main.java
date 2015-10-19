@@ -1,21 +1,29 @@
 package juddy.mvc;
 
-import android.graphics.Point;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class Main extends ActionBarActivity {
-    TextView textView;
-    public int n=0;
-    String sName;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Main extends Activity {
+    public int n = 0;
+    public int n1, n2;
+    public String s1, s2;
+    public RadioButton rbAdd, rbSub, rbMult, rbDiv;
+    List<RadioButton> radioButtons = new ArrayList<RadioButton>();
+    public double dAns = 0;
+    public String sOp;
+    boolean bFlip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,27 +40,79 @@ public class Main extends ActionBarActivity {
     }
 
     public void buttonClicked() {
-        final EditText editText = (EditText) findViewById(R.id.enterName);
+        rbAdd = (RadioButton) findViewById(R.id.rbAdd);
+        rbSub = (RadioButton) findViewById(R.id.rbSub);
+        rbMult = (RadioButton) findViewById(R.id.rbMult);
+        rbDiv = (RadioButton) findViewById(R.id.rbDiv);
+        radioButtons.add(rbAdd);
+        radioButtons.add(rbSub);
+        radioButtons.add(rbMult);
+        radioButtons.add(rbDiv);
+        final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        for (RadioButton button : radioButtons) {
+            button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) processRadioButtonClick(buttonView);
+                }
+            });
+        }
+        final EditText etNum1 = (EditText) findViewById(R.id.editTextn1);
+        final EditText etNum2 = (EditText) findViewById(R.id.editTextn2);
+        final TextView tv = (TextView) findViewById(R.id.textView);
         Button button = (Button) findViewById(R.id.button);
-            button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 n++;
-                System.out.println("buttonclickd");
-                TextView tv = (TextView)findViewById(R.id.textView);
-                tv.setText("Button clickd :D " + n + " times");
-                sName=editText.getText().toString();
-                tv.setY(300);
-                tv.setText("button pressed by "+sName+" "+n+" times");
+                s1 = etNum1.getText().toString();
+                n1 = Integer.parseInt(s1);
+                s2 = etNum2.getText().toString();
+                n2 = Integer.parseInt(s2);
+                if (rbAdd.isChecked()) {
+                    sOp = "plus";
+                    dAns = n1 + n2;
+                } else if (rbSub.isChecked()) {
+                    sOp = "subtract";
+                    if (checkBox.isChecked()) {
+                        if (n2 > n1) {
+                            dAns = n2 - n1;
+                        } else {
+                            dAns = n1 - n2;
+                        }
+                    } else {
+                        dAns = n1 - n2;
+                    }
+                } else if (rbMult.isChecked()) {
+                    sOp = "times";
+                    dAns = n1 * n2;
+                } else if (rbDiv.isChecked()) {
+                    sOp = "divided by";
+                    if (checkBox.isChecked()) {
+                        if (n2 > n1) {
+                            dAns = n2 / n1;
+                        } else {
+                            dAns = n1 / n2;
+                        }
+                    } else {
+                        dAns = n1 / n2;
+                    }
+                }
+                if (checkBox.isChecked()) {
+                    tv.setText(n2 + " " + sOp + " " + n1 + " is " + dAns);
+                } else {
+                    tv.setText(n1 + " " + sOp + " " + n2 + " is " + dAns);
+                }
             }
         });
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        int height = size.y;
-/*        tvButton.setText("Button Clicked");
-        tvButton.setX(width / 2);
-        tvButton.setY(height / 2);*/
+    }
+
+    private void processRadioButtonClick(CompoundButton buttonView) {
+
+        for (RadioButton button : radioButtons) {
+
+            if (button != buttonView) button.setChecked(false);
+        }
+
     }
 
     @Override
